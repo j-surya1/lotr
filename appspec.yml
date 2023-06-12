@@ -10,3 +10,6 @@ hooks:
   AfterInstall:
     - location: scripts/AfterInstallHook.sh
       timeout: 30
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 30
