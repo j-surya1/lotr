@@ -7,17 +7,33 @@ permissions:
   - object: /var/www/myapp
     pattern: "**"
     owner: ec2-user
-    group: apache
+    group: ec2-user
 hooks:
   BeforeInstall:
-    - location: scripts/before-install.sh
-      timeout: 20
+    - timeout: 300
       runas: root
+      commands:
+        - |
+          #!/bin/bash
+          # Update system packages if needed
+          yum -y update
   AfterInstall:
-    - location: scripts/after-install.sh
-      timeout: 20
+    - timeout: 300
       runas: root
+      commands:
+        - |
+          #!/bin/bash
+          # Change to the application directory
+          cd /var/www/myapp
+          # Install Node.js dependencies using npm
+          npm install
   ApplicationStart:
-    - location: scripts/application-start.sh
-      timeout: 20
+    - timeout: 300
       runas: root
+      commands:
+        - |
+          #!/bin/bash
+          # Change to the application directory
+          cd /var/www/myapp
+          # Start the Node.js application using npm
+          node server.js
