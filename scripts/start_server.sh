@@ -3,4 +3,4 @@
 set -e
 cd /usr/share/nginx/html
 pm2 stop all
-pm2 start npm -- start
+sudo -E pm2 start server.js
