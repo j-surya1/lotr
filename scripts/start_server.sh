@@ -3,4 +3,4 @@
 set -e
 cd /usr/share/nginx/html
 pm2 stop all
-pm2 start /home/ubuntu/my-app1/app/index.js
+pm2 start server.js
